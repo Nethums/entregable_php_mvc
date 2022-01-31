@@ -1,13 +1,8 @@
 <?php
     //Aqui pondremos las funciones de validación de los campos
 
-    function validarDatos($n, $e, $p, $hc, $f, $g) {
-        return (is_string($n) &
-            is_numeric($e) &
-            is_numeric($p) &
-            is_numeric($hc) &
-            is_numeric($f) &
-            is_numeric($g));
+    function validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {
+        return true;
     }
 
 
@@ -17,7 +12,16 @@
             else
                 $tmp= "";
                 
-                return $tmp;
+        return $tmp;
+    }
+
+    /* Función que comprueba que hay al menos 1 opción elegida */
+    function recogeCheck(string $text) {
+        if (isset($_REQUEST[$text])){
+            return TRUE;
+        } else{
+            return FALSE;
+        }
     }
 
 

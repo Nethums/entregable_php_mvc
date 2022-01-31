@@ -2,9 +2,7 @@
     <hr/>
     <a href="index.php?ctl=inicio">inicio</a> |
     <a href="index.php?ctl=listar">ver alumnos</a> |
-    <a href="index.php?ctl=insertar">insertar alimento</a> |
-    <a href="index.php?ctl=buscar">buscar por nombre</a> |
-    <a href="index.php?ctl=buscarAlimentosPorEnergia">buscar por energia</a> |
-    <a href="index.php?ctl=buscarAlimentosCombinada">búsqueda combinada</a>
+    <a href="index.php?ctl=insertarAlumno">añadir alumno</a> |
+    <a href="index.php?ctl=buscar">buscar</a>
     <hr/>
 </div>

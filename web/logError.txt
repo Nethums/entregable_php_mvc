@@ -1,2 +1,34 @@
-
-Class "Alimentos" not found0.09916000 1643569618
+setcookie(): Argument #2 ($value) must be of type string, array given0.92056200 1643659746
+setcookie(): Argument #2 ($value) must be of type string, array given0.79341900 1643659762
+setcookie(): Argument #2 ($value) must be of type string, array given0.50495800 1643659784
+setcookie(): Argument #2 ($value) must be of type string, array given0.05167700 1643659830
+setcookie(): Argument #2 ($value) must be of type string, array given0.15197200 1643660039
+setcookie(): Argument #2 ($value) must be of type string, array given0.67485000 1643660044
+setcookie(): Argument #2 ($value) must be of type string, array given0.74055200 1643660071
+setcookie(): Argument #2 ($value) must be of type string, array given0.56071700 1643660090
+setcookie(): Argument #2 ($value) must be of type string, array given0.67007500 1643660221
+setcookie(): Argument #2 ($value) must be of type string, array given0.65907600 1643660298
+setcookie(): Argument #2 ($value) must be of type string, array given0.68043400 1643660303
+setcookie(): Argument #2 ($value) must be of type string, array given0.82954000 1643660324
+setcookie(): Argument #2 ($value) must be of type string, array given0.66379300 1643660333
+setcookie(): Argument #2 ($value) must be of type string, array given0.78646600 1643660346
+setcookie(): Argument #2 ($value) must be of type string, array given0.12268800 1643660351
+setcookie(): Argument #2 ($value) must be of type string, array given0.77889300 1643664750
+setcookie(): Argument #2 ($value) must be of type string, array given0.29821000 1643664756
+setcookie(): Argument #2 ($value) must be of type string, array given0.46649500 1643664760
+setcookie(): Argument #2 ($value) must be of type string, array given0.38569800 1643664778
+setcookie(): Argument #2 ($value) must be of type string, array given0.57777500 1643664783
+setcookie(): Argument #2 ($value) must be of type string, array given0.77463000 1643664904
+setcookie(): Argument #2 ($value) must be of type string, array given0.15700200 1643664909
+setcookie(): Argument #2 ($value) must be of type string, array given0.80773400 1643665783
+setcookie(): Argument #2 ($value) must be of type string, array given0.13876000 1643666298
+setcookie(): Argument #2 ($value) must be of type string, array given0.95955700 1643666382
+setcookie(): Argument #2 ($value) must be of type string, array given0.98624900 1643666394
+setcookie(): Argument #2 ($value) must be of type string, array given0.90403000 1643666408
+setcookie(): Argument #2 ($value) must be of type string, array given0.28802400 1643666414
+setcookie(): Argument #2 ($value) must be of type string, array given0.55539800 1643666484
+setcookie(): Argument #2 ($value) must be of type string, array given0.83418300 1643666488
+setcookie(): Argument #2 ($value) must be of type string, array given0.58938100 1643668196
+setcookie(): Argument #2 ($value) must be of type string, array given0.42999400 1643668303
+setcookie(): Argument #2 ($value) must be of type string, array given0.19628900 1643668724
+setcookie(): Argument #2 ($value) must be of type string, array given0.27264400 1643670388

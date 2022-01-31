@@ -23,8 +23,8 @@ $map = array(
     */
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
     'listar' => array('controller' =>'Controller', 'action' =>'listar'),
-    'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
-    'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),
+    'insertarAlumno' => array('controller' =>'Controller', 'action' =>'insertarAlumno'),
+    'buscar' => array('controller' =>'Controller', 'action' =>'buscarAlumno'),
     'ver' => array('controller' =>'Controller', 'action' =>'ver'),
     'error' => array('controller' =>'Controller', 'action' =>'error')
 );

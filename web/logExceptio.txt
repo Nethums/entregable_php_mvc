@@ -1,2 +1,2 @@
-SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dws_mvc_instituto.alimentos' doesn't exist0.27926100 1643569713
-SQLSTATE[42S02]: Base table or view not found: 1146 Table 'dws_mvc_instituto.alimentos' doesn't exist0.27677300 1643569724
+
+SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'idAlumno' cannot be null0.48335700 1643671336

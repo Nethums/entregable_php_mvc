@@ -45,6 +45,14 @@
 				<td>Fecha nacimiento</td>
 				<td><?php echo $params['alumnos']['fNacimiento']?></td>
             </tr>
+            <tr>
+				<td>Asignaturas</td>
+				<td><?php 
+                    foreach ($asignaturas['alumnos'] as $asignaturas) {
+                        echo $asignaturas['nombre'] . ", ";
+                    } 
+                ?></td>
+            </tr>
 
             <tr>           
             

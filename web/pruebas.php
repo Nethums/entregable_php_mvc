@@ -23,5 +23,7 @@ function alumnoUltimaId() {
 $id = alumnoUltimaId();
 print_r($id);
 
+print_r($_SESSION['errores']);
+
 ?>
 

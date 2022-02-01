@@ -32,3 +32,4 @@ setcookie(): Argument #2 ($value) must be of type string, array given0.58938100 
 setcookie(): Argument #2 ($value) must be of type string, array given0.42999400 1643668303
 setcookie(): Argument #2 ($value) must be of type string, array given0.19628900 1643668724
 setcookie(): Argument #2 ($value) must be of type string, array given0.27264400 1643670388
+cTexto(): Argument #3 ($errores) cannot be passed by reference0.36252500 1643742700

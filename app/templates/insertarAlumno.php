@@ -23,6 +23,15 @@
     <input type="submit" value="insertar" name="insertar" />
 </form>
 
+<?php
+    if (isset($_SESSION['errores'])) {
+        echo "<pre>";
+        print_r($_SESSION['errores']);
+        echo "</pre>";
+    }
+?>
+
+
 
 <?php $contenido = ob_get_clean() ?>
 

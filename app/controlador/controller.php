@@ -86,12 +86,6 @@
                     $asignaturas = recogeCheck('asignaturas');
                     $asiUser = $_REQUEST["asignaturas"];
 
-                    $asiUserString = implode(",", $asiUser);
-                    
-                    setcookie("asig", $asiUserString);
-
-
-                    
 
                     // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
                     if (validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil)) {
@@ -106,8 +100,11 @@
                             $params['mensaje'] = 'No se ha podido insertar el alumno en la base de datos. Revisa el formulario';
                         }
 
+                        $lastId = new Alumnos();
+                        $ultimaIdAlumno = $lastId->alumnoUltimaId();
+
                         $asig = new Alumnos();
-                        if ($asig->insertarAsignaturas($_COOKIE["usuarioId"])) {
+                        if ($asig->insertarAsignaturas($ultimaIdAlumno, $asiUser)) {
                             
                             header('Location: pruebas.php?funciona=si');
                         } else {                            

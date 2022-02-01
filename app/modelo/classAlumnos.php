@@ -63,37 +63,75 @@ class Alumnos extends Modelo {
         $result->bindParam(7, $fNacimiento);
         $result->bindParam(8, $fPerfil);
         $result->execute();
-        setcookie("usuarioId", $this->conexion->lastInsertId());
+        // setcookie("usuarioId", $this->conexion->lastInsertId());
         return $result;
     }
 
-    public function insertarAsignaturas($id) {
-        $arrayAsignaturasUsuario = explode (",", $_COOKIE['asig'] );
-// Arreglar función, sólo coge la última asignatura.
-// Hay un problema con la Cookie de la id usuario porque coge el del usuario anterior
+    public function alumnoUltimaId() {
+        $consultaId = "select max(id) from alumnos";
+        $resultId = $this->conexion->query($consultaId);
+        $alumnoUltimaId = $resultId->fetchColumn();
+        return $alumnoUltimaId;
+    }
+    
+
+
+    public function insertarAsignaturas($id, $arrayAsignaturas) {        
         
-        if (in_array("dws", $arrayAsignaturasUsuario)) {
-            $asignaturaDWS = "2";
-
-            $consulta = "insert into clases (idAlumno, idAsignatura) values (?, ?)";
-
-            $result = $this->conexion->prepare($consulta);
-            $result->bindParam(1, $id);
-            $result->bindParam(2, $asignaturaDWS);
-            $result->execute();
-            return $result;
-        } 
-
-        if (in_array("diw", $arrayAsignaturasUsuario)) {
+        if (in_array("diw", $arrayAsignaturas)) {
             $asignaturaDIW = "0";
+
+            $consulta0 = "insert into clases (idAlumno, idAsignatura) values (?, ?)";
+
+            $result0 = $this->conexion->prepare($consulta0);
+            $result0->bindParam(1, $id);
+            $result0->bindParam(2, $asignaturaDIW);
+            $result0->execute();
+        } 
+        
+        if (in_array("dwc", $arrayAsignaturas)) {
+            $asignaturaDWC = "1";
+
+            $consulta1 = "insert into clases (idAlumno, idAsignatura) values (?, ?)";
+
+            $result1 = $this->conexion->prepare($consulta1);
+            $result1->bindParam(1, $id);
+            $result1->bindParam(2, $asignaturaDWC);
+            $result1->execute();
+        }         
+
+
+        if (in_array("dws", $arrayAsignaturas)) {
+            $asignaturaDWS = "2";
 
             $consulta2 = "insert into clases (idAlumno, idAsignatura) values (?, ?)";
 
-            $result2 = $this->conexion->prepare($consulta);
+            $result2 = $this->conexion->prepare($consulta2);
             $result2->bindParam(1, $id);
-            $result2->bindParam(2, $asignaturaDIW);
+            $result2->bindParam(2, $asignaturaDWS);
             $result2->execute();
-            return $result2;
+        } 
+
+        if (in_array("dws", $arrayAsignaturas)) {
+            $asignaturaDAM = "3";
+
+            $consulta3 = "insert into clases (idAlumno, idAsignatura) values (?, ?)";
+
+            $result3 = $this->conexion->prepare($consulta3);
+            $result3->bindParam(1, $id);
+            $result3->bindParam(2, $asignaturaDAM);
+            $result3->execute();
+        } 
+
+        if (in_array("dws", $arrayAsignaturas)) {
+            $asignaturaEIE = "4";
+
+            $consulta4 = "insert into clases (idAlumno, idAsignatura) values (?, ?)";
+
+            $result4 = $this->conexion->prepare($consulta2);
+            $result4->bindParam(1, $id);
+            $result4->bindParam(2, $asignaturaEIE);
+            $result4->execute();
         } 
     }
 }

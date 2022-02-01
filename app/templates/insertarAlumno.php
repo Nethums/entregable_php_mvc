@@ -1,6 +1,7 @@
 <?php ob_start() ?>
 
 <h2>Formulario para insertar nuevo alumno</h2>
+<p>Todos los campos son obligatorios.</p>
 
 <form name="formInsertar" action="index.php?ctl=insertarAlumno" method="POST" enctype="multipart/form-data">
 

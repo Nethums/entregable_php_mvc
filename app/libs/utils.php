@@ -32,19 +32,11 @@
         if (!cFecha($fNacimiento, "fNacimiento", "0")) {
             $error = TRUE;
         }
-
-        if (!$error) {
-            if (!cSubirImagenPerfilAlumno('fPerfil', $nombre, $nia)) {
-                $error = TRUE;
-            }
+        
+        if (!cSubirImagenPerfilAlumno('fPerfil', $nombre, $nia)) {
+            $error = TRUE;
         }
 
-        
-
-
-
-
-        
         if($error) {
             return FALSE;
         } else {
@@ -136,14 +128,18 @@
         if (count($arrayFecha) == 3) {
             switch ($formato) {
                 case ("0"):
+                    $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
                     return checkdate($arrayFecha[1], $arrayFecha[0], $arrayFecha[2]);
+                    
                     break;
                    
                 case ("1"):
-                    return checkdate($arrayFecha[0], $arrayFecha[1], $arrayFecha[2]);
+                    $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
+                    return checkdate($arrayFecha[0], $arrayFecha[1], $arrayFecha[2]);  
                     break;
                    
                 case ("2"):
+                    $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
                     return checkdate($arrayFecha[1], $arrayFecha[2], $arrayFecha[0]);
                     break;
                 default:

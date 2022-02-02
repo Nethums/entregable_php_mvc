@@ -23,7 +23,23 @@ function alumnoUltimaId() {
 $id = alumnoUltimaId();
 print_r($id);
 
-print_r($_SESSION['errores']);
+echo "<br>";
+
+//print_r($_SESSION['errores']);
+
+$foto = "foto dE PruEba.jpg";
+echo $foto . "<br>";
+$foto = str_replace(" ", "_", $foto);
+$foto = strtolower($foto);
+echo $foto;
+
+echo "<br><br><br>";
+
+$prueba = "foto dE PruEba SegunDA.jpg";
+echo $prueba . "<br>";
+$prueba = strtolower(str_replace(" ", "_", $prueba));
+
+echo $prueba;
 
 ?>
 

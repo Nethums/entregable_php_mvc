@@ -52,6 +52,9 @@ class Alumnos extends Modelo {
     
 
     public function insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {
+
+        $fPerfilRuta = "\img\\" . $nia . "\\" . $fPerfil;
+
         $consulta = "insert into alumnos (nombre, nia, email, direccion, cPostal, localidad, fNacimiento, fPerfil) values (?, ?, ?, ?, ?, ?, ?, ?)";
         $result = $this->conexion->prepare($consulta);
         $result->bindParam(1, $nombre);
@@ -61,7 +64,7 @@ class Alumnos extends Modelo {
         $result->bindParam(5, $cPostal);
         $result->bindParam(6, $localidad);
         $result->bindParam(7, $fNacimiento);
-        $result->bindParam(8, $fPerfil);
+        $result->bindParam(8, $fPerfilRuta);
         $result->execute();
         
         return $result;

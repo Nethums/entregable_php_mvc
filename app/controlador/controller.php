@@ -82,7 +82,7 @@
                     $cPostal = recoge('cPostal');
                     $localidad = recoge('localidad');
                     $fNacimiento = recoge('fNacimiento');
-                    $fPerfil = recoge('fPerfil');
+                    $fPerfil = $_FILES['fPerfil']['name'];
                     $asignaturas = recogeCheck('asignaturas');
                     $asiUser = $_REQUEST["asignaturas"];
 
@@ -90,9 +90,11 @@
                     // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
                     if (validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil)) {
 
+                        $fotoPerfilSaneada = strtolower(str_replace(" ", "_", $fPerfil));
+
                         // Si no ha habido problema creo modelo y hago inserción
                         $m = new Alumnos();
-                        if ($m->insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil)) {
+                        if ($m->insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $_SESSION['fechaBD'], $fotoPerfilSaneada)) {
                             //Guardamos el id del usuario
                             
                             //header('Location: pruebas.php?funciona=si');

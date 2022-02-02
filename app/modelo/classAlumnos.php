@@ -63,7 +63,7 @@ class Alumnos extends Modelo {
         $result->bindParam(7, $fNacimiento);
         $result->bindParam(8, $fPerfil);
         $result->execute();
-        // setcookie("usuarioId", $this->conexion->lastInsertId());
+        
         return $result;
     }
 

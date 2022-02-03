@@ -24,9 +24,12 @@ $map = array(
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
     'listar' => array('controller' =>'Controller', 'action' =>'listar'),
     'insertarAlumno' => array('controller' =>'Controller', 'action' =>'insertarAlumno'),
-    'buscar' => array('controller' =>'Controller', 'action' =>'buscarAlumno'),
+    'buscarAlumno' => array('controller' =>'Controller', 'action' =>'buscarAlumno'),
+    'borrarAlumno' => array('controller' =>'Controller', 'action' =>'borrar'),
     'ver' => array('controller' =>'Controller', 'action' =>'ver'),
-    'error' => array('controller' =>'Controller', 'action' =>'error')
+    'error' => array('controller' =>'Controller', 'action' =>'error'),
+    'iniciarSesion' => array('controller' =>'Controller', 'action' =>'login'),
+    'registro' => array('controller' =>'Controller', 'action' =>'registrarse')
 );
 // Parseo de la ruta
 if (isset($_GET['ctl'])) {

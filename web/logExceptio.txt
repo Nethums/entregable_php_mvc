@@ -1,2 +1,2 @@
 
-SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'idAlumno' cannot be null0.48335700 1643671336
+SQLSTATE[HY000] [2002] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión0.99466500 1643880986

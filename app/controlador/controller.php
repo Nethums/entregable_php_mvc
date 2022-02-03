@@ -128,18 +128,17 @@
             require __DIR__ . '/../templates/insertarAlumno.php';
         }
 
-        public function buscarPorNombre()
-        {
+        public function buscarAlumno() {
             try {
                 $params = array(
                     'nombre' => '',
                     'resultado' => array()
                 );
-                $m = new Alimentos();
+                $m = new Alumnos();
                 if (isset($_POST['buscar'])) {
                     $nombre = recoge("nombre");
                     $params['nombre'] = $nombre;
-                    $params['resultado'] = $m->buscarAlimentosPorNombre($nombre);
+                    $params['resultado'] = $m->buscarFichaAlumno($nombre);
                 }
             } catch (Exception $e) {
                 error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
@@ -148,10 +147,17 @@
                 error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
                 header('Location: index.php?ctl=error');
             }
-            require __DIR__ . '/../templates/buscarPorNombre.php';
-        }
-
+            require __DIR__ . '/../templates/buscarAlumno.php';
+        }     
         
+        public function login() {
+
+
+
+
+            
+            require __DIR__.'/../templates/iniciarSesion.php';
+        }  
     }
 
 ?>

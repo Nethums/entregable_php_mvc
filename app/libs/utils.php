@@ -128,26 +128,41 @@
         if (count($arrayFecha) == 3) {
             switch ($formato) {
                 case ("0"):
-                    $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
-                    return checkdate($arrayFecha[1], $arrayFecha[0], $arrayFecha[2]);
-                    
+                    if (checkdate($arrayFecha[1], $arrayFecha[0], $arrayFecha[2])){
+                        $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
+                        return TRUE;
+                    } else {
+                        $_SESSION['errores']['fNacimiento'] = "Fecha incorrecta";
+                        return FALSE;
+                    }
                     break;
                    
                 case ("1"):
-                    $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
-                    return checkdate($arrayFecha[0], $arrayFecha[1], $arrayFecha[2]);  
+                    if (checkdate($arrayFecha[0], $arrayFecha[1], $arrayFecha[2])){
+                        $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
+                        return TRUE;
+                    } else {
+                        $_SESSION['errores']['fNacimiento'] = "Fecha incorrecta";
+                        return FALSE;
+                    }
                     break;
                    
                 case ("2"):
-                    $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
-                    return checkdate($arrayFecha[1], $arrayFecha[2], $arrayFecha[0]);
+                    if (checkdate($arrayFecha[1], $arrayFecha[2], $arrayFecha[0])){
+                        $_SESSION['fechaBD'] = $arrayFecha[2] . "/" . $arrayFecha[1] . "/" . $arrayFecha[0];
+                        return TRUE;
+                    } else {
+                        $_SESSION['errores']['fNacimiento'] = "Fecha incorrecta";
+                        return FALSE;
+                    }
                     break;
+
                 default:
                     $_SESSION['errores']['fNacimiento'] = "Fecha no válida.";
                     return FALSE;
            }
        } else {
-        $_SESSION['errores']['fNacimiento'] = "Faltan datos en la fecha.";
+            $_SESSION['errores']['fNacimiento'] = "Faltan datos en la fecha.";
            return FALSE;
        }
     }

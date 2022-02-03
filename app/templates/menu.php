@@ -1,8 +1,8 @@
-<div id="menu">
-    <hr/>
-    <a href="index.php?ctl=inicio">inicio</a> |
-    <a href="index.php?ctl=listar">ver alumnos</a> |
-    <a href="index.php?ctl=insertarAlumno">añadir alumno</a> |
-    <a href="index.php?ctl=buscar">buscar</a>
-    <hr/>
-</div>
+<ul id="menu">
+    <li><a href="index.php?ctl=inicio">Inicio</a></li>
+    <li><a href="index.php?ctl=listar">Ver alumnos</a></li>
+    <!-- <li><a href="index.php?ctl=insertarAlumno">Añadir alumno</a></li> -->
+    <li><a href="index.php?ctl=buscarAlumno">Buscar</a></li>
+    <li><a href="index.php?ctl=iniciarSesion">Iniciar sesión</a></li>
+    <li><a href="index.php?ctl=registro"></a>Registrarse</li>
+</ul>

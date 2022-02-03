@@ -1,3 +1,10 @@
+/* Menu */
+ul#menu li {
+    display: inline;
+    list-style: none;
+    padding-left: 15px;
+}
+
 /* Página: Perfil alumno individual -> Fotografía  (acción ver) */
 
 .fotoAlumno {
@@ -10,13 +17,28 @@
 }
 
 
-/* Formulario insertar alumno */
-form[name="formInsertar"] input {
+/* Formularios */
+form input[type="text"] {
     display: block;
     padding: 10px;
     width: 400px;
     margin-bottom: 15px;
 }
+
+form input[type="file"] {
+    display: block;
+    width: 400px;
+    margin-bottom: 15px;
+}
+
+form input[type="submit"] {
+    display: block;
+    padding: 10px;
+    width: 400px;
+    margin-bottom: 15px;
+}
+
+/* Formulario insertar alumno */
 
 form[name="formInsertar"] input[type="checkbox"] {
     display: inline;
@@ -26,5 +48,9 @@ form[name="formInsertar"] input[type="checkbox"] {
 }
 
 
-
-
+/* Tamaño imágenes del listado */
+img.imagenLista {
+    width:30px;
+    height: 30px;
+    object-fit: cover;
+}

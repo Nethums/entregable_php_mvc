@@ -32,28 +32,11 @@ class Alumnos extends Modelo {
         $result->bindParam(':id', $id);
         $result->execute();
         return $result->fetchAll();
-    }
-
-    
-
-
-
-
-    public function buscarAlimentosPorNombre($nombre)
-    {
-        $consulta = "select * from alimentos where nombre like :nombre order by energia desc";
-
-        $result = $this->conexion->prepare($consulta);
-        $result->bindParam(':nombre', $nombre);
-        $result->execute();
-
-        return $result->fetchAll();
-    }    
-    
+    } 
 
     public function insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {
 
-        $fPerfilRuta = "\img\\" . $nia . "\\" . $fPerfil;
+        $fPerfilRuta = "\\" . $nia . "\\" . $fPerfil;
 
         $consulta = "insert into alumnos (nombre, nia, email, direccion, cPostal, localidad, fNacimiento, fPerfil) values (?, ?, ?, ?, ?, ?, ?, ?)";
         $result = $this->conexion->prepare($consulta);
@@ -75,9 +58,7 @@ class Alumnos extends Modelo {
         $resultId = $this->conexion->query($consultaId);
         $alumnoUltimaId = $resultId->fetchColumn();
         return $alumnoUltimaId;
-    }
-    
-
+    } 
 
     public function insertarAsignaturas($id, $arrayAsignaturas) {        
         
@@ -137,4 +118,17 @@ class Alumnos extends Modelo {
             $result4->execute();
         } 
     }
+
+    public function buscarFichaAlumno($nombre) {
+        $consulta = "select * from alumnos where nombre like :nombre order by nombre asc";
+
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':nombre', $nombre);
+        $result->execute();
+
+        return $result->fetchAll();
+    }    
+    
+
+
 }

@@ -3,11 +3,7 @@
     class Controller {
 
         public function inicio() {
-            $params = array(
-                'mensaje' => 'Bienvenido al Instituto Abastos',
-                'fecha' => date('d-m-yy')
-            );
-        
+            
             require __DIR__.'/../templates/inicio.php';
         }
 
@@ -150,14 +146,53 @@
             require __DIR__ . '/../templates/buscarAlumno.php';
         }     
         
-        public function login() {
+        public function iniciarSesion() {
+            try {   
+                $params = array(
+                    'resultado' => array()
+                );            
 
+                $u = new Usuarios();
+                if (isset($_POST['iniciarSesion'])) {
+                    
+                    $nombre = recoge('usuario');
+                    $password = recoge('password');
+                    $params['resultado'] = $u->loginUsuario($nombre, $password);
 
-
-
+                    if($params['resultado']){
+                        $menu = "menuLogin.php";
+                        //header('Location: index.php?ctl=buscar&usuario='. $nombre);
+                    } else {
+                        $_SESSION['errores']['login'] = "No te has podido conectar.";
+                    }
+                } 
+            } catch (Exception $e) {
+                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+                header('Location: index.php?ctl=error');
+            } catch (Error $e) {
+                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+                header('Location: index.php?ctl=error');
+            }       
             
+            
+            
+
+
+
             require __DIR__.'/../templates/iniciarSesion.php';
         }  
+
+
+        public function registrarse() {
+
+
+
+
+
+            require __DIR__.'/../templates/registrarse.php';
+        }  
+
+
     }
 
 ?>

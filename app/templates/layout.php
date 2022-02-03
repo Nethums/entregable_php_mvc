@@ -12,12 +12,12 @@
 		<?php 
 			/*  En caso de tener diferentes menus dependiendo de las vistas modificaremos el valor de $menu en el controlador */
 			if (!isset($menu))
-			$menu='menu.php' ;
+				$menu= 'menu.php' ;
 			include $menu 
 		?>
 
 		<div id="contenido">
-			<?php echo $contenido ?>
+			<?php echo $contenido;?>			
 		</div>
 
 		<div id="pie">

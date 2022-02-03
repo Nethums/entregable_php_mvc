@@ -3,13 +3,12 @@
 <h2>Inicia sesión</h2>
 <p>Introduce tus datos</p>
 
-<form name="formLogin" action="index.php?ctl=login" method="POST" enctype="multipart/form-data">
+<form name="formLogin" action="index.php?ctl=iniciarSesion" method="POST" enctype="multipart/form-data">
     
-    <input type="text" name="nia"  placeholder="Usuario" />
-    <input type="text" name="email"  placeholder="Contraseña"/>
-    
+    <input type="text" name="usuario"  placeholder="Usuario" />
+    <input type="text" name="password"  placeholder="Contraseña"/>    
 
-    <input type="submit" value="Login" name="Iniciar sesión" />
+    <input type="submit" value="Inciar Sesión" name="iniciarSesion" />
 </form>
 
 <?php

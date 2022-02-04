@@ -1,7 +1,9 @@
 <?php ob_start() ?>
 
-<h2>Cerrar sesión</h2>
-<p>Cerrar sesion</p>
+<div class="intro">
+    <h2>Has cerrado sesión correctamente</h2>
+    <p>Ahora estás navegando como usuario invitado.</p>
+</div>
 
 
 

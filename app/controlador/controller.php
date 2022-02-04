@@ -2,12 +2,8 @@
 
     class Controller {
 
-        public function inicio() {
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+        public function inicio() {            
+            mostrarMenu($_SESSION['nivel']);
             require __DIR__.'/../templates/inicio.php';
         }
 
@@ -31,11 +27,7 @@
                 header('Location: index.php?ctl=error');
             }
             
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+            mostrarMenu($_SESSION['nivel']);
 
             require __DIR__ . '/../templates/listarAlumnos.php';
         }
@@ -66,11 +58,7 @@
                 header('Location: index.php?ctl=error');
             }
 
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+            mostrarMenu($_SESSION['nivel']);
 
             require __DIR__ . '/../templates/verAlumno.php';
         }
@@ -96,8 +84,10 @@
                     $localidad = recoge('localidad');
                     $fNacimiento = recoge('fNacimiento');
                     $fPerfil = $_FILES['fPerfil']['name'];
-                    $asignaturas = recogeCheck('asignaturas');
-                    $asiUser = $_REQUEST["asignaturas"];
+                    if(recogeCheck('asignaturas')) {
+                        $asiUser = $_REQUEST["asignaturas"];
+                    }
+                    
 
 
                     // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
@@ -138,11 +128,7 @@
                 //header('Location: index.php?ctl=error');
             }
 
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+            mostrarMenu($_SESSION['nivel']);
 
             require __DIR__ . '/../templates/insertarAlumno.php';
         }
@@ -167,11 +153,7 @@
                 header('Location: index.php?ctl=error');
             }
 
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+            mostrarMenu($_SESSION['nivel']);
 
             require __DIR__ . '/../templates/buscarAlumno.php';
         }     
@@ -192,10 +174,9 @@
                     if($params['resultado']){
                         $_SESSION['nombreUsuario'] = $params['resultado']['user'];
                         $_SESSION['nivel'] = $params['resultado']['nivel'];
-                        $_SESSION['fPerfil'] = $params['resultado']['fPerfil'];
-                        
+                        $_SESSION['fPerfil'] = $params['resultado']['fPerfil'];                       
                     } else {
-                        $_SESSION['errores']['login'] = "No te has podido conectar.";
+                        $_SESSION['errores']['login'] = "No se ha podido conectar.";
                     }
                 } 
             } catch (Exception $e) {
@@ -206,11 +187,7 @@
                 header('Location: index.php?ctl=error');
             }            
             
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+            mostrarMenu($_SESSION['nivel']);
 
             require __DIR__.'/../templates/iniciarSesion.php';
         }  
@@ -220,24 +197,17 @@
 
 
 
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+            
+
+            mostrarMenu($_SESSION['nivel']);
 
             require __DIR__.'/../templates/registrarse.php';
         }  
 
         public function cerrarSesion() {
             session_unset();
-            session_destroy();
 
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
-                $menu = 'menuLogin.php';
-            } else {
-                $menu = 'menu.php';
-            }
+            mostrarMenu($_SESSION['nivel']);
 
             require __DIR__.'/../templates/cerrarSesion.php';
         }  

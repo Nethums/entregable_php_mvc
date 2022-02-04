@@ -1,0 +1,5 @@
+Cannot access offset of type string on string0.83134600 1644014662
+Cannot access offset of type string on string0.71711700 1644014670
+Cannot access offset of type string on string0.91935600 1644014684
+Cannot access offset of type string on string0.63541400 1644014689
+Cannot access offset of type string on string0.46737200 1644014742

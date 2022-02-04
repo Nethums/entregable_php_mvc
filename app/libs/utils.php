@@ -1,4 +1,16 @@
 <?php
+    function mostrarMenu($nivelUsuario) {
+        if ($nivelUsuario == 0) {
+            $menu = 'menu.php';
+        }
+        
+        if ($nivelUsuario == 1) {
+            $menu = 'menuLogin.php';
+        }
+
+        return $menu;
+    }
+
     //Aqui pondremos las funciones de validación de los campos
 
     function validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {
@@ -98,7 +110,7 @@
         if ((preg_match("/[A-Za-zÑñ$espacios]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
             return TRUE;
         } else {
-            $_SESSION['errores'][$campo] = "El campo $campo no es válido. Sólo se admiten letras.";
+            $_SESSION['errores'][$campo] = "El campo $campo no es válido.";
             return FALSE;
         }        
     }
@@ -107,7 +119,7 @@
         if ((preg_match("/[0-9$espacios]{" . $min . "," . $max . "}$/u", $text))) {
             return TRUE;
         } else {
-            $_SESSION['errores'][$campo] = "El campo $campo sólo puede contener números.";
+            $_SESSION['errores'][$campo] = "El campo $campo no es válido.";
             return FALSE;
         }        
     }
@@ -116,7 +128,7 @@
         if ((preg_match("/[A-Za-zÑñ0-9-,$espacios]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
             return TRUE;
         } else {
-            $_SESSION['errores'][$campo] = "La dirección tiene carácteres no permitidos.";
+            $_SESSION['errores'][$campo] = "La dirección no es válida.";
             return FALSE;
         }        
     }
@@ -167,10 +179,6 @@
        }
     }
   
-    function cImagen (string $campo) {
-
-    }
-
     function cSubirImagenPerfilAlumno(string $campo, string $alumno, string $nia) {
 
         $extensionesValidas = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
@@ -191,7 +199,7 @@
                         
             // Comprobamos la extensión del archivo dentro de la lista que hemos definido al principio
             if (! in_array($extension, $extensionesValidas)) {
-                $_SESSION['errores']['fPerfil'] = "La extensión del archivo no es válida o no se ha subido ningún archivo.";
+                $_SESSION['errores']['fPerfil'] = "La extensión del archivo no es válida.";
                 return FALSE;
             }
                

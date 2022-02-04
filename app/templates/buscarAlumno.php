@@ -1,9 +1,12 @@
 <?php ob_start() ?>
-    <h2>Buscar alumno en la base de datos</h2>
-    <p>Introduce el nombre completo.</p>
+    <div class="intro">
+        <h2>Buscar un alumno en la base de datos</h2>
+        <p>Introduce el nombre completo del alumno.</p>
+    </div>
+
     <form name="formBusqueda" action="index.php?ctl=buscarAlumno" method="POST">
         <input type="text" name="nombre" value="<?php echo $params['nombre']?>" placeholder="Introduce el nombre">
-        <input type="submit" value="buscar" name="buscar">
+        <input type="submit" value="Buscar" name="buscar">
     </form>
 
 <?php if (count($params['resultado'])>0): ?>

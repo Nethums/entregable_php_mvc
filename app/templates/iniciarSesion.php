@@ -1,7 +1,9 @@
 <?php ob_start() ?>
 
-<h2>Inicia sesión</h2>
-<p>Introduce tus datos</p>
+<div class="intro">
+    <h2>Has cerrado sesión correctamente</h2>
+    <p>Ahora estás navegando como usuario invitado.</p>
+</div>
 
 <form name="formLogin" action="index.php?ctl=iniciarSesion" method="POST" enctype="multipart/form-data">
     
@@ -13,10 +15,13 @@
 
 <?php
     if (isset($_SESSION['errores'])) {
-        echo "<pre>";
-        print_r($_SESSION['errores']);
-        echo "</pre>";
-    }
+        echo "<div class='errores'>";
+        foreach ($_SESSION['errores'] as $error) {
+            echo "<p>$error</p>";
+        }
+        echo "</div>";
+    }    
+    unset($_SESSION['errores']);
 ?>
 
 

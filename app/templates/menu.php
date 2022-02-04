@@ -1,4 +1,4 @@
-<ul id="menu">
+<ul class="menu">
     <li><a href="index.php?ctl=inicio">Inicio</a></li>
     <li><a href="index.php?ctl=listar">Ver alumnos</a></li>
     <!-- <li><a href="index.php?ctl=insertarAlumno">Añadir alumno</a></li> -->

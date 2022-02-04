@@ -8,7 +8,7 @@
     require_once __DIR__ . '/../app/modelo/classUsuarios.php';
     require_once __DIR__ . '/../app/controlador/Controller.php';
 
-
+    session_start();
 
     /*
     Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera que si el usuario todavia no está logueado
@@ -30,6 +30,7 @@
         'ver' => array('controller' =>'Controller', 'action' =>'ver'),
         'error' => array('controller' =>'Controller', 'action' =>'error'),
         'iniciarSesion' => array('controller' =>'Controller', 'action' =>'iniciarSesion'),
+        'cerrarSesion' => array('controller' =>'Controller', 'action' =>'cerrarSesion'),
         'registro' => array('controller' =>'Controller', 'action' =>'registrarse')
     );
     // Parseo de la ruta

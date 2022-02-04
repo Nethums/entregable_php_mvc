@@ -1,9 +1,104 @@
+:root {
+    --color1: blueviolet;
+  }
+
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    background-color:#ccc;
+}
+
+body {
+    width: 1200px;
+    margin: 2% auto;
+    background-color: white; 
+    position: relative;
+    min-height: 50vh;
+}
+
+div#contenido {    
+    padding: 30px 50px;
+}
+
+/* Cabecera */
+div#cabecera {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+div#cabecera .derecha {
+    padding-left: 50px;
+}
+
+
 /* Menu */
-ul#menu li {
+div#nav-menu {
+    width: 100%;
+    height: 50px;
+    display: inline-block;
+    background-color: var(--color1); 
+}
+
+div#nav-menu ul.navegacion {
+    float: left;
+    width: 49%;
+    height: 50px;
+    text-align: left;
+    padding-left: 1%;
+}
+
+div#nav-menu ul.navegacion li {
+    padding-right: 20px;
+}
+
+div#nav-menu ul li {
+    height: 50px;
+    line-height: 50px;
     display: inline;
     list-style: none;
-    padding-left: 15px;
 }
+
+div#nav-menu ul.user {
+    float: right;
+    width: 49%;
+    height: 50px;
+    text-align: right;
+    padding-right: 1%;    
+    color: white;
+}
+
+div#nav-menu ul.user li {
+    padding-left: 20px;
+
+}
+
+div#nav-menu ul.user img {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    top: 7px;
+}
+
+div#nav-menu a {
+    text-decoration: none;
+    color: white;
+}
+
+div#nav-menu a:hover {
+    color: #ccc;
+}
+
+
+
+
 
 /* Página: Perfil alumno individual -> Fotografía  (acción ver) */
 
@@ -54,3 +149,25 @@ img.imagenLista {
     height: 30px;
     object-fit: cover;
 }
+
+
+div#pie {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0;
+    background-color: var(--color1); 
+    color: white;
+    position: absolute;
+    bottom: 0;
+}
+
+
+
+
+
+
+

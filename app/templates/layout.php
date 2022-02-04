@@ -7,22 +7,31 @@
 	</head>
 	<body>
 		<div id="cabecera">
-			<h1>Bienvenido al IES Abastos</h1>
+			<div class="izquierda">
+				<img src="../img/logo_conselleria_180px.png" alt="">
+			</div>
+
+			<div class="derecha">
+				<h1>Bienvenido al IES Abastos</h1>
+				<p>Institut d'Educació Secundaria i FP Abastos</p>
+			</div>
+			
 		</div>
 		<?php 
-			/*  En caso de tener diferentes menus dependiendo de las vistas modificaremos el valor de $menu en el controlador */
+			
 			if (!isset($menu))
-				$menu= 'menu.php' ;
-			include $menu 
+				$menu='menu.php' ;
+			include $menu;
 		?>
+		
 
 		<div id="contenido">
-			<?php echo $contenido;?>			
+			<?php echo $contenido; ?>			
 		</div>
 
 		<div id="pie">
-			<hr />
-			<div align="center">- Aquí deberíamos cargar el FOOTER -</div>
+			<p>Ejercicio MVC - Desarrollo en Entorno de Servidor - 2º DAW Semipresencial</p>
+			<p>Miguel Ángel Gallart Aleixandre</p>
 		</div>
 	</body>
 </html>

@@ -12,12 +12,11 @@ class Usuarios extends Modelo {
         $result->bindParam(':clave', $password);
         $result->execute();
         $filasConsulta = $result -> rowCount();
-
     
         if (!$filasConsulta) {            
             return FALSE;
         } else {
-            return TRUE;
+            return $result->fetch(PDO::FETCH_ASSOC);
         }
     }
     

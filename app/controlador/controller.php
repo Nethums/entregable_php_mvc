@@ -3,7 +3,11 @@
     class Controller {
 
         public function inicio() {
-            
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }
             require __DIR__.'/../templates/inicio.php';
         }
 
@@ -26,6 +30,13 @@
                 error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
                 header('Location: index.php?ctl=error');
             }
+            
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }
+
             require __DIR__ . '/../templates/listarAlumnos.php';
         }
 
@@ -53,6 +64,12 @@
             } catch (Error $e) {
                 error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
                 header('Location: index.php?ctl=error');
+            }
+
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
             }
 
             require __DIR__ . '/../templates/verAlumno.php';
@@ -121,6 +138,12 @@
                 //header('Location: index.php?ctl=error');
             }
 
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }
+
             require __DIR__ . '/../templates/insertarAlumno.php';
         }
 
@@ -143,6 +166,13 @@
                 error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
                 header('Location: index.php?ctl=error');
             }
+
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }
+
             require __DIR__ . '/../templates/buscarAlumno.php';
         }     
         
@@ -160,8 +190,10 @@
                     $params['resultado'] = $u->loginUsuario($nombre, $password);
 
                     if($params['resultado']){
-                        $menu = "menuLogin.php";
-                        //header('Location: index.php?ctl=buscar&usuario='. $nombre);
+                        $_SESSION['nombreUsuario'] = $params['resultado']['user'];
+                        $_SESSION['nivel'] = $params['resultado']['nivel'];
+                        $_SESSION['fPerfil'] = $params['resultado']['fPerfil'];
+                        
                     } else {
                         $_SESSION['errores']['login'] = "No te has podido conectar.";
                     }
@@ -172,12 +204,13 @@
             } catch (Error $e) {
                 error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
                 header('Location: index.php?ctl=error');
-            }       
+            }            
             
-            
-            
-
-
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }
 
             require __DIR__.'/../templates/iniciarSesion.php';
         }  
@@ -187,9 +220,26 @@
 
 
 
-
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }
 
             require __DIR__.'/../templates/registrarse.php';
+        }  
+
+        public function cerrarSesion() {
+            session_unset();
+            session_destroy();
+
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }
+
+            require __DIR__.'/../templates/cerrarSesion.php';
         }  
 
 

@@ -1,5 +1,32 @@
 <?php ob_start() ?>
-<h1>Aquí va el formulario de registro</h1>
+<div class="intro">
+    <h2>Registro de nuevo usuario</h2>
+    <p>Todos los campos son obligatorios.</p>
+</div>
+
+<form name="formInsertar" action="index.php?ctl=registro" method="POST" enctype="multipart/form-data">
+
+    <input type="text" name="user" placeholder="Nickname" />
+    <input type="text" name="password" placeholder="Contraseña" />
+    <input type="text" name="email" placeholder="Email"/>
+    <input type="file" name="fPerfil"/>
+
+    <input type="submit" value="Añadir usuario" name="registrar" />
+</form>
+
+<!--
+    Foreach que muestra los errrores al macenados en $_SESSION['errores'] guardados cuando se han validado los campos del formulario
+-->
+<?php
+    if (isset($_SESSION['errores'])) {
+        echo "<div class='errores'>";
+        foreach ($_SESSION['errores'] as $error) {
+            echo "<p>$error</p>";
+        }
+        echo "</div>";
+    }    
+    unset($_SESSION['errores']);
+?>
 
 <?php $contenido = ob_get_clean() ?>
 <?php include 'layout.php' ?>

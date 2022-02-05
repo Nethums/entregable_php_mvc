@@ -28,6 +28,9 @@
     <input type="submit" value="Añadir usuario" name="insertar" />
 </form>
 
+<!--
+    Foreach que muestra los errrores al macenados en $_SESSION['errores'] guardados cuando se han validado los campos del formulario
+-->
 <?php
     if (isset($_SESSION['errores'])) {
         echo "<div class='errores'>";

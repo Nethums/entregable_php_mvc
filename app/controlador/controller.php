@@ -3,19 +3,19 @@
     class Controller {
 
         public function inicio() {            
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
             } 
             require __DIR__.'/../templates/inicio.php';
         }
 
         public function error() {
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
             } 
 
             require __DIR__ . '/../templates/error.php';
@@ -37,10 +37,10 @@
                 header('Location: index.php?ctl=error');
             }
             
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
             }  
 
             require __DIR__ . '/../templates/listarAlumnos.php';
@@ -72,10 +72,10 @@
                 header('Location: index.php?ctl=error');
             }
 
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
             } 
 
             require __DIR__ . '/../templates/verAlumno.php';
@@ -146,11 +146,11 @@
                 //header('Location: index.php?ctl=error');
             }
 
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
-            } 
+            } else {
+                $menu = 'menu.php';
+            }  
 
             require __DIR__ . '/../templates/insertarAlumno.php';
         }
@@ -175,11 +175,11 @@
                 header('Location: index.php?ctl=error');
             }
 
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
-            } 
+            } else {
+                $menu = 'menu.php';
+            }  
 
             require __DIR__ . '/../templates/buscarAlumno.php';
         }     
@@ -213,10 +213,10 @@
                 header('Location: index.php?ctl=error');
             }            
             
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
             } 
 
             require __DIR__.'/../templates/iniciarSesion.php';
@@ -225,22 +225,59 @@
 
         public function registrarse() {
 
+            try {
+                $params = array(
+                    'nombre' => '',
+                    'nia' => '',
+                    'email' => '',
+                    'fPerfil' => ''
+                );
 
+                if (isset($_POST['registrar'])) {
+                    $user = recoge('user');
+                    $password = recoge('password');
+                    $email = recoge('email');
+                    $fPerfil = $_FILES['fPerfil']['name'];
 
-            
+                    // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
+                    if (validarDatosRegistro($user, $pass, $email, $fPerfil)) {
 
-            if ($_SESSION['nivel'] == 0) {
-                $menu = 'menu.php';
-            } else {
+                        $fotoPerfilSaneada = strtolower(str_replace(" ", "_", $fPerfil));
+
+                        // Si no ha habido problema creo modelo y hago inserción
+                        $u = new Usuarios();
+                        if ($u->registrarUsuario($user, $pass, $email, $fotoPerfilSaneada)) {
+                            //Guardamos el id del usuario
+                            
+                            //header('Location: pruebas.php?funciona=si');
+                        } else {
+                            $_SESSION['errores'] = 'No se ha podido insertar el alumno en la base de datos. Revisa el formulario';
+                        }
+
+                    } else {                        
+                        $_SESSION['errores'] = 'Hay datos que no son correctos. Revisa el formulario';
+                    }   
+                }
+            } catch (Exception $e) {
+                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+                //header('Location: index.php?ctl=error');
+            } catch (Error $e) {
+                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+                //header('Location: index.php?ctl=error');
+            }
+
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
-            } 
+            } else {
+                $menu = 'menu.php';
+            }  
 
             require __DIR__.'/../templates/registrarse.php';
         }  
 
+        // Cerramos sesión borrando los parámetros de $_SESSION con session_unset()
         public function cerrarSesion() {
             session_unset();
-
             require __DIR__.'/../templates/cerrarSesion.php';
         }  
 

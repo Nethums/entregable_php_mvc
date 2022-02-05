@@ -19,6 +19,21 @@ class Usuarios extends Modelo {
             return $result->fetch(PDO::FETCH_ASSOC);
         }
     }
+
+    public function registrarUsuario($user, $pass, $email, $fPerfil) {
+
+        $fPerfilRuta = "\\" . $user . "\\" . $fPerfil;
+
+        $consulta = "insert into usuarios (user, pass, email, fPerfil) values (?, ?, ?, ?, ?, ?, ?, ?)";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(1, $user);
+        $result->bindParam(2, $pass);
+        $result->bindParam(3, $email);
+        $result->bindParam(4, $fPerfilRuta);
+        $result->execute();
+        
+        return $result;
+    }
     
 
 

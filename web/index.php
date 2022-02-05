@@ -9,7 +9,6 @@
     require_once __DIR__ . '/../app/controlador/Controller.php';
 
     session_start();
-    $_SESSION['nivel'] = 0;
     /*
     Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera que si el usuario todavia no está logueado
     lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['nivel_usuario']=0

@@ -23,12 +23,16 @@
 				$menu='menu.php' ;
 			include $menu;
 
-			/*
+				echo "SESION";
 				echo "<pre>";
 				print_r($_SESSION);
+				echo "</pre>"; 
+
+				echo "REQUEST";
+				echo "<pre>";
+				print_r($_REQUEST);
 				echo "</pre>";
-				echo $menu;
-			*/
+			
 		?>
 		
 

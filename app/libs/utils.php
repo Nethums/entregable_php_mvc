@@ -1,14 +1,4 @@
 <?php
-    function mostrarMenu($nivelUsuario) {
-        if ($nivelUsuario == 0) {
-            $menu = 'menu.php';
-        }
-        
-        if ($nivelUsuario == 1) {
-            $menu = 'menuLogin.php';
-        }        
-    }
-
     //Aqui pondremos las funciones de validación de los campos
 
     function validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {
@@ -44,6 +34,33 @@
         }
         
         if (!cSubirImagenPerfilAlumno('fPerfil', $nombre, $nia)) {
+            $error = TRUE;
+        }
+
+        if($error) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }        
+    }
+
+    function validarDatosRegistro($user, $pass, $email, $fPerfil) {
+        $error = FALSE;
+        
+        if (!cTexto($user, "user", 150, 1, " ", "i")) {
+            $error = TRUE;
+        }
+        
+        if (!cPassword($pass, "password", 50, 1, "")) {
+            $error = TRUE;
+        }
+        
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = TRUE;
+            $_SESSION['errores']['email'] = "El email introducido no es válido.";
+        }              
+        
+        if (!cSubirImagenPerfilUsuario($user, "fPerfil")) {
             $error = TRUE;
         }
 
@@ -106,6 +123,15 @@
             
     function cTexto(string $text, string $campo, int $max = 150, int $min = 1, string $espacios = " ", string $case = "i") {
         if ((preg_match("/[A-Za-zÑñ$espacios]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
+            return TRUE;
+        } else {
+            $_SESSION['errores'][$campo] = "El campo $campo no es válido.";
+            return FALSE;
+        }        
+    }
+
+    function cPassword(string $text, string $campo, int $max = 150, int $min = 1, string $espacios = " ", string $case = "i") {
+        if ((preg_match("/[A-Za-zÑñ0-9*_-$espacios]{" . $min . "," . $max . "}$/u$case", sinTildes($text)))) {
             return TRUE;
         } else {
             $_SESSION['errores'][$campo] = "El campo $campo no es válido.";
@@ -221,6 +247,51 @@
             } 
         }
     }    
+
+    function cSubirImagenPerfilUsuario(string $user, string $campo) {
+
+        $extensionesValidas = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
+
+        $directorioTemp = $_FILES[$campo]['tmp_name'];
+        $extension = $_FILES[$campo]['type'];
+        
+        //No se pueden guardar nombres de fotos con espacios, por tanto cambiamos los espacios por _  
+        $nombreFotoSinEspacios = reemplazarEnFiles ("fPerfil", "name", " ", "_");
+        $nombreFotoSinEspacios = strtolower($nombreFotoSinEspacios);
+
+    
+        if($_FILES[$campo]['error'] == 0 && $_FILES[$campo]['size'] > 0) {
+            /* El alumno ha subido una foto y hay que analizarla */        
+            $nombrePartes = explode(".", $nombreFotoSinEspacios); 
+            //Necesitamos la extensión de la foto que ha subido el alumno, por eso nos quedamos con el segundo item del array que es la extensión
+            $extensionImagen = $nombrePartes[1];    
+                        
+            // Comprobamos la extensión del archivo dentro de la lista que hemos definido al principio
+            if (! in_array($extension, $extensionesValidas)) {
+                $_SESSION['errores'][$campo] = "La extensión del archivo no es válida.";
+                return FALSE;
+            }
+               
+            $rutaUsuario = dirname(dirname(__DIR__)) . "\img\usuarios\\". $user . '\\' . $nombreFotoSinEspacios;
+
+            $directorioUsuario = dirname(dirname(__DIR__)) . "\img\usuarios\\". $user . '\\';
+
+            if (!file_exists($directorioUsuario)) {
+                mkdir($directorioUsuario, 0777, true);
+            } else {
+                $_SESSION['errores']['directorioUsuario'] = "No se ha podido crear el directorio porque ya existe.";
+                return FALSE;
+            } 
+
+            if (move_uploaded_file($directorioTemp, $rutaUsuario)) {
+                // En este caso devolvemos sólo el nombre del fichero sin la ruta
+                return TRUE;
+            } else {
+                $_SESSION['errores'][$campo] = "Error: No se ha podido subir la imagen.";
+                return FALSE;
+            } 
+        }
+    }  
 
 
 ?>

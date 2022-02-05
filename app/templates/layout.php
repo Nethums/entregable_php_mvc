@@ -22,6 +22,13 @@
 			if (!isset($menu))
 				$menu='menu.php' ;
 			include $menu;
+
+			/*
+				echo "<pre>";
+				print_r($_SESSION);
+				echo "</pre>";
+				echo $menu;
+			*/
 		?>
 		
 

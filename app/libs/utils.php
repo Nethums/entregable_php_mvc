@@ -6,9 +6,7 @@
         
         if ($nivelUsuario == 1) {
             $menu = 'menuLogin.php';
-        }
-
-        return $menu;
+        }        
     }
 
     //Aqui pondremos las funciones de validación de los campos

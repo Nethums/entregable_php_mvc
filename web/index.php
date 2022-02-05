@@ -25,13 +25,14 @@
         'listar' => array('controller' =>'Controller', 'action' =>'listar'),
         'insertarAlumno' => array('controller' =>'Controller', 'action' =>'insertarAlumno'),
         'buscarAlumno' => array('controller' =>'Controller', 'action' =>'buscarAlumno'),
-        'borrarAlumno' => array('controller' =>'Controller', 'action' =>'borrar'),
+        'listarLogin' => array('controller' =>'Controller', 'action' =>'listarLogin'),
         'ver' => array('controller' =>'Controller', 'action' =>'ver'),
         'error' => array('controller' =>'Controller', 'action' =>'error'),
         'iniciarSesion' => array('controller' =>'Controller', 'action' =>'iniciarSesion'),
         'cerrarSesion' => array('controller' =>'Controller', 'action' =>'cerrarSesion'),
         'registro' => array('controller' =>'Controller', 'action' =>'registrarse'),
-        'registroCorrecto' => array('controller' =>'Controller', 'action' =>'registroCorrecto')
+        'registroCorrecto' => array('controller' =>'Controller', 'action' =>'registroCorrecto'),
+        'errorPermisos' => array('controller' =>'Controller', 'action' =>'errorPermisos'),
     );
     // Parseo de la ruta
     if (isset($_GET['ctl'])) {

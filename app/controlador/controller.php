@@ -148,7 +148,7 @@
                 }
             
             } else {
-                header('Location: index.php?ctl=error');
+                header('Location: index.php?ctl=errorPermisos&problema=areaR');
             }        
             
             if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
@@ -205,7 +205,8 @@
                     if($params['resultado']){
                         $_SESSION['nombreUsuario'] = $params['resultado']['user'];
                         $_SESSION['nivel'] = $params['resultado']['nivel'];
-                        $_SESSION['fPerfil'] = $params['resultado']['fPerfil'];                       
+                        $_SESSION['fPerfil'] = $params['resultado']['fPerfil'];        
+                        header('Location: index.php?ctl=inicio');               
                     } else {
                         $_SESSION['errores']['login'] = "No se ha podido conectar.";
                     }
@@ -229,38 +230,42 @@
 
 
         public function registrarse() {
-
-            try {
-                if (isset($_POST['registrar'])) {
-                    $user = recoge('user');
-                    $pass = recoge('password');
-                    $email = recoge('email');
-                    $fPerfil = $_FILES['fPerfil']['name'];
-
-                    // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
-                    if (validarDatosRegistro($user, $pass, $email, $fPerfil)) {
-
-                        $fotoPerfilSaneada = strtolower(str_replace(" ", "_", $fPerfil));
-
-                        // Si no ha habido problema creo modelo y hago inserción
-                        $u = new Usuarios();
-                        if ($u->registrarUsuario($user, $pass, $email, $fotoPerfilSaneada)) {
-                            header('Location: index.php?ctl=registroCorrecto');
-                        } else {
-                            $_SESSION['errores']['errorRegistro'] = 'No se has podido registrarte. Revisa el formulario';
-                        }
-
-                    } else {                        
-                        $_SESSION['errores']['datos'] = 'Hay datos que no son correctos. Revisa el formulario';
-                    }   
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 0) {
+                try {
+                    if (isset($_POST['registrar'])) {
+                        $user = recoge('user');
+                        $pass = recoge('password');
+                        $email = recoge('email');
+                        $fPerfil = $_FILES['fPerfil']['name'];
+    
+                        // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
+                        if (validarDatosRegistro($user, $pass, $email, $fPerfil)) {
+    
+                            $fotoPerfilSaneada = strtolower(str_replace(" ", "_", $fPerfil));
+    
+                            // Si no ha habido problema creo modelo y hago inserción
+                            $u = new Usuarios();
+                            if ($u->registrarUsuario($user, $pass, $email, $fotoPerfilSaneada)) {
+                                header('Location: index.php?ctl=registroCorrecto');
+                            } else {
+                                $_SESSION['errores']['errorRegistro'] = 'No se has podido registrarte. Revisa el formulario';
+                            }
+    
+                        } else {                        
+                            $_SESSION['errores']['datos'] = 'Hay datos que no son correctos. Revisa el formulario';
+                        }   
+                    }
+                } catch (Exception $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+                    //header('Location: index.php?ctl=error');
+                } catch (Error $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+                    //header('Location: index.php?ctl=error');
                 }
-            } catch (Exception $e) {
-                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
-                //header('Location: index.php?ctl=error');
-            } catch (Error $e) {
-                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
-                //header('Location: index.php?ctl=error');
-            }
+            } else {
+                header('Location: index.php?ctl=errorPermisos&problema=registrado');
+            } 
+            
 
             if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
@@ -282,9 +287,45 @@
         } 
 
         //Borrar alumno
-        public function borrar() {
-            
+        public function listarLogin() {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                
+                try {
+                    $m = new Alumnos();
+                    $params = array(
+                        'alumnos' => $m->mostrarAlumnos()
+                    );
+    
+                    // Recogemos los dos tipos de excepciones que se pueden producir
+                } catch (Exception $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+                    header('Location: index.php?ctl=error');
+                } catch (Error $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+                    header('Location: index.php?ctl=error');
+                }                
+                
+            } else {
+                header('Location: index.php?ctl=errorPermisos&problema=areaR');
+            } 
+
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            }  
+
+            require __DIR__ . '/../templates/listarAlumnosLogin.php';
         }
+
+        public function errorPermisos() {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            } ;
+            require __DIR__.'/../templates/errorPermisos.php';
+        }  
         
         // Cerramos sesión borrando los parámetros de $_SESSION con session_unset()
         public function cerrarSesion() {

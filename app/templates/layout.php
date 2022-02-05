@@ -22,7 +22,7 @@
 			if (!isset($menu))
 				$menu='menu.php' ;
 			include $menu;
-
+			/*
 				echo "SESION";
 				echo "<pre>";
 				print_r($_SESSION);
@@ -32,7 +32,7 @@
 				echo "<pre>";
 				print_r($_REQUEST);
 				echo "</pre>";
-			
+			*/			
 		?>
 		
 

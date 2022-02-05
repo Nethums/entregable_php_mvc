@@ -1,9 +1,8 @@
 <div id="nav-menu">
     <ul class="menu navegacion">
         <li><a href="index.php?ctl=inicio">Inicio</a></li>
-        <li><a href="index.php?ctl=listar">Ver alumnos</a></li>
-        <li><a href="index.php?ctl=insertarAlumno">Añadir alumno</a></li>
-        <li><a href="index.php?ctl=borrarAlumno">Borrar alumno</a></li>
+        <li><a href="index.php?ctl=listarLogin">Ver alumnos</a></li>
+        <li><a href="index.php?ctl=insertarAlumno">Añadir alumno</a></li>        
         <li><a href="index.php?ctl=buscarAlumno">Buscar</a></li>
     </ul>
 

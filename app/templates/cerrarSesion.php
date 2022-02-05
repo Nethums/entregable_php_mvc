@@ -5,8 +5,6 @@
     <p>Ahora estás navegando como usuario invitado.</p>
 </div>
 
-
-
 <?php $contenido = ob_get_clean() ?>
 
 <?php include 'layout.php' ?>

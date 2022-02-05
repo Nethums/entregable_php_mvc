@@ -30,7 +30,8 @@
         'error' => array('controller' =>'Controller', 'action' =>'error'),
         'iniciarSesion' => array('controller' =>'Controller', 'action' =>'iniciarSesion'),
         'cerrarSesion' => array('controller' =>'Controller', 'action' =>'cerrarSesion'),
-        'registro' => array('controller' =>'Controller', 'action' =>'registrarse')
+        'registro' => array('controller' =>'Controller', 'action' =>'registrarse'),
+        'registroCorrecto' => array('controller' =>'Controller', 'action' =>'registroCorrecto')
     );
     // Parseo de la ruta
     if (isset($_GET['ctl'])) {

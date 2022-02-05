@@ -34,7 +34,7 @@ class Alumnos extends Modelo {
         return $result->fetchAll();
     } 
 
-    public function insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {
+    public function insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {        
 
         $fPerfilRuta = "\\" . $nia . "\\" . $fPerfil;
 

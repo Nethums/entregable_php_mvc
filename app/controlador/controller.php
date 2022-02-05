@@ -82,70 +82,75 @@
         }
 
         public function insertarAlumno() {
-            try {
-                $params = array(
-                    'nombre' => '',
-                    'nia' => '',
-                    'email' => '',
-                    'direccion' => '',
-                    'cPostal' => '',
-                    'localidad' => '',
-                    'fNacimiento' => ''
-                );
-
-                if (isset($_POST['insertar'])) {
-                    $nombre = recoge('nombre');
-                    $nia = recoge('nia');
-                    $email = recoge('email');
-                    $direccion = recoge('direccion');
-                    $cPostal = recoge('cPostal');
-                    $localidad = recoge('localidad');
-                    $fNacimiento = recoge('fNacimiento');
-                    $fPerfil = $_FILES['fPerfil']['name'];
-                    if(recogeCheck('asignaturas')) {
-                        $asiUser = $_REQUEST["asignaturas"];
+            
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                
+                try {
+                    $params = array(
+                        'nombre' => '',
+                        'nia' => '',
+                        'email' => '',
+                        'direccion' => '',
+                        'cPostal' => '',
+                        'localidad' => '',
+                        'fNacimiento' => ''
+                    );
+    
+                    if (isset($_POST['insertar'])) {
+                        $nombre = recoge('nombre');
+                        $nia = recoge('nia');
+                        $email = recoge('email');
+                        $direccion = recoge('direccion');
+                        $cPostal = recoge('cPostal');
+                        $localidad = recoge('localidad');
+                        $fNacimiento = recoge('fNacimiento');
+                        $fPerfil = $_FILES['fPerfil']['name'];
+                        if(recogeCheck('asignaturas')) {
+                            $asiUser = $_REQUEST["asignaturas"];
+                        }                            
+    
+                        // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
+                        if (validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil)) {
+    
+                            $fotoPerfilSaneada = strtolower(str_replace(" ", "_", $fPerfil));
+    
+                            // Si no ha habido problema creo modelo y hago inserción
+                            $m = new Alumnos();
+                            if ($m->insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $_SESSION['fechaBD'], $fotoPerfilSaneada)) {
+                                //Guardamos el id del usuario
+                                
+                                //header('Location: pruebas.php?funciona=si');
+                            } else {
+                                $params['mensaje'] = 'No se ha podido insertar el alumno en la base de datos. Revisa el formulario';
+                            }
+    
+                            $lastId = new Alumnos();
+                            $ultimaIdAlumno = $lastId->alumnoUltimaId();
+    
+                            $asig = new Alumnos();
+                            if ($asig->insertarAsignaturas($ultimaIdAlumno, $asiUser)) {
+                                
+                                header('Location: pruebas.php?funciona=si');
+                            } else {                            
+                                $params['mensaje'] = 'No se han podido insertar las asignaturas en la base de datos.';
+                            }
+    
+                        } else {                        
+                            $params['mensaje'] = 'Hay datos que no son correctos. Revisa el formulario';
+                        }   
                     }
-                    
-
-
-                    // comprobar campos formulario. Aqui va la validación con las funciones de bGeneral o la clase Validacion
-                    if (validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil)) {
-
-                        $fotoPerfilSaneada = strtolower(str_replace(" ", "_", $fPerfil));
-
-                        // Si no ha habido problema creo modelo y hago inserción
-                        $m = new Alumnos();
-                        if ($m->insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $_SESSION['fechaBD'], $fotoPerfilSaneada)) {
-                            //Guardamos el id del usuario
-                            
-                            //header('Location: pruebas.php?funciona=si');
-                        } else {
-                            $params['mensaje'] = 'No se ha podido insertar el alumno en la base de datos. Revisa el formulario';
-                        }
-
-                        $lastId = new Alumnos();
-                        $ultimaIdAlumno = $lastId->alumnoUltimaId();
-
-                        $asig = new Alumnos();
-                        if ($asig->insertarAsignaturas($ultimaIdAlumno, $asiUser)) {
-                            
-                            header('Location: pruebas.php?funciona=si');
-                        } else {                            
-                            $params['mensaje'] = 'No se han podido insertar las asignaturas en la base de datos.';
-                        }
-
-                    } else {                        
-                        $params['mensaje'] = 'Hay datos que no son correctos. Revisa el formulario';
-                    }   
+                } catch (Exception $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
+                    //header('Location: index.php?ctl=error');
+                } catch (Error $e) {
+                    error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
+                    //header('Location: index.php?ctl=error');
                 }
-            } catch (Exception $e) {
-                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
-                //header('Location: index.php?ctl=error');
-            } catch (Error $e) {
-                error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
-                //header('Location: index.php?ctl=error');
-            }
-
+            
+            } else {
+                header('Location: index.php?ctl=error');
+            }        
+            
             if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
                 $menu = 'menuLogin.php';
             } else {
@@ -226,16 +231,9 @@
         public function registrarse() {
 
             try {
-                $params = array(
-                    'nombre' => '',
-                    'nia' => '',
-                    'email' => '',
-                    'fPerfil' => ''
-                );
-
                 if (isset($_POST['registrar'])) {
                     $user = recoge('user');
-                    $password = recoge('password');
+                    $pass = recoge('password');
                     $email = recoge('email');
                     $fPerfil = $_FILES['fPerfil']['name'];
 
@@ -247,15 +245,13 @@
                         // Si no ha habido problema creo modelo y hago inserción
                         $u = new Usuarios();
                         if ($u->registrarUsuario($user, $pass, $email, $fotoPerfilSaneada)) {
-                            //Guardamos el id del usuario
-                            
-                            //header('Location: pruebas.php?funciona=si');
+                            header('Location: index.php?ctl=registroCorrecto');
                         } else {
-                            $_SESSION['errores'] = 'No se ha podido insertar el alumno en la base de datos. Revisa el formulario';
+                            $_SESSION['errores']['errorRegistro'] = 'No se has podido registrarte. Revisa el formulario';
                         }
 
                     } else {                        
-                        $_SESSION['errores'] = 'Hay datos que no son correctos. Revisa el formulario';
+                        $_SESSION['errores']['datos'] = 'Hay datos que no son correctos. Revisa el formulario';
                     }   
                 }
             } catch (Exception $e) {
@@ -275,6 +271,21 @@
             require __DIR__.'/../templates/registrarse.php';
         }  
 
+        // Cerramos sesión borrando los parámetros de $_SESSION con session_unset()
+        public function registroCorrecto() {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
+                $menu = 'menuLogin.php';
+            } else {
+                $menu = 'menu.php';
+            } 
+            require __DIR__.'/../templates/registroCorrecto.php';
+        } 
+
+        //Borrar alumno
+        public function borrar() {
+            
+        }
+        
         // Cerramos sesión borrando los parámetros de $_SESSION con session_unset()
         public function cerrarSesion() {
             session_unset();

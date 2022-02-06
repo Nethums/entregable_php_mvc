@@ -1,4 +1,13 @@
 <?php ob_start() ?>
+
+<!--
+        · Contenido de la página donde se ve un formulario para que un usuario se registre.
+        · Lo guardamos en el buffer y se carga en la variable $contenido para mostrarla en /templates/layout.
+        · Una vez que el usuario introduce los valores y le da al botón, se ejecuta la acción "registro()" del controlador.
+        · Se enviarán los valores para que se validen y se ejecute la query en la BBDD.
+        · Si el usuario no existe, se le mostrará un mensaje de error debajo del formulario.
+    -->
+
 <div class="intro">
     <h2>Registro de nuevo usuario</h2>
     <p>Todos los campos son obligatorios.</p>

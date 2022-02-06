@@ -1,5 +1,13 @@
 <?php ob_start() ?>
 
+    <!--
+        · Contenido de la página donde se ve un formulario para iniciar sesión.
+        · Lo guardamos en el buffer y se carga en la variable $contenido para mostrarla en /templates/layout.
+        · Una vez que el usuario introduce los valores y le da al botón, se ejecuta la acción "iniciarSesion()" del controlador.
+        · Se enviarán los valores para que se validen y se ejecute la query en la BBDD.
+        · Si el usuario no existe, se le mostrará un mensaje de error debajo del formulario.
+    -->
+
 <div class="intro">
     <h2>Identifícate</h2>
     <p>Introduce tu usuario y contraseña.</p>

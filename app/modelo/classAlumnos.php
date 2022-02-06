@@ -1,7 +1,15 @@
 <?php
 
+
+//Clase que es hija de la clase Modelo de quién hereda el método conexión
+
 class Alumnos extends Modelo {
 
+    /*
+        · Se realiza una conexión a la base de datos.
+        · Ejecutamos un select de todos los alumnos y se guarda el resultado en un array.
+        · El array se visualiza en la página /templates/listarAlumnos.php
+    */
     public function mostrarAlumnos() {
         $consulta = "select * 
                      from alumnos";
@@ -10,6 +18,12 @@ class Alumnos extends Modelo {
         return $result->fetchAll();
     }
 
+    /*
+        · Se realiza una conexión a la base de datos.
+        · Se pasa como parámetro la id del alumno para obtener su información.
+        · Ejecutamos un select y guardamos el resultado en un array.
+        · El array se visualiza en la página /templates/verAlumno.php
+    */
     public function infoAlumno($id) {
         $consulta = "select * 
                      from alumnos 
@@ -21,6 +35,12 @@ class Alumnos extends Modelo {
         return $result->fetch();
     }
 
+    /*
+        · Se realiza una conexión a la base de datos.
+        · Se pasa como parámetro la id del alumno para obtener las asignaturas.
+        · Ejecutamos un select y guardamos el resultado en un array.
+        · El array se visualiza en la página /templates/verAlumno.php
+    */
     public function asignaturasAlumno($id) {
         $consulta = "select asignaturas.nombre 
                      from asignaturas 
@@ -34,6 +54,12 @@ class Alumnos extends Modelo {
         return $result->fetchAll();
     } 
 
+    /*
+        · Función a la que pasamos los valores que tiene que introducir.
+        · Previamente se han validado en la acción insertarAlumno() del controlador.
+        · Por elección de criterio en la base de datos, se guardan las imágenes de cada usuario en una carpeta que lleva el nombre de su NIA.
+        · Se prepara la consulta y se ejecuta.
+    */
     public function insertarAlumno($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {        
 
         $fPerfilRuta = "\\" . $nia . "\\" . $fPerfil;
@@ -53,12 +79,21 @@ class Alumnos extends Modelo {
         return $result;
     }
 
+    /*
+        · Método para obtener la última id que se ha insertado en la tabla.
+        · Se necesita para insetar las asginaturas en la tabla "asignaturas".
+    */
     public function alumnoUltimaId() {
         $consultaId = "select max(id) from alumnos";
         $resultId = $this->conexion->query($consultaId);
         $alumnoUltimaId = $resultId->fetchColumn();
         return $alumnoUltimaId;
     } 
+
+    /*
+        · Debemos pasarle los parámetros de la id del usuario y las asignaturas que hemos marcado en el check del formulario /templates/insertarAlumno.php.
+        · Comprobamos si existe la asignatura dentro del array elegido y si es así se realiza el insert dentro de la tabla "asignaturas".
+    */
 
     public function insertarAsignaturas($id, $arrayAsignaturas) {        
         
@@ -119,6 +154,11 @@ class Alumnos extends Modelo {
         } 
     }
 
+    /*
+        · Función a la que pasamos el nombre de usuario a buscar.
+        · Se realiza la query select.
+        · Se guarda el resultado en un array asociativo para mostrarlo en la vista /templates/verAlumno.php
+    */
     public function buscarFichaAlumno($nombre) {
         $consulta = "select * from alumnos where nombre like :nombre order by nombre asc";
 

@@ -1,6 +1,7 @@
 <?php
-    // web/index.php
-    // carga del modelo y los controladores
+    /* 
+        Cargamos todas las librerías, las diferentes clases y el controlador done están las acciones 
+    */
     require_once __DIR__ . '/../app/libs/config.php';
     require_once __DIR__ . '/../app/libs/utils.php';
     require_once __DIR__ . '/../app/modelo/classModelo.php';
@@ -8,19 +9,14 @@
     require_once __DIR__ . '/../app/modelo/classUsuarios.php';
     require_once __DIR__ . '/../app/controlador/Controller.php';
 
-    session_start();
     /*
-    Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera que si el usuario todavia no está logueado
-    lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['nivel_usuario']=0
+        Iniciamos sesion en el index.php y de esta forma nos aseguramos de que todas las páginas tengan sesiones ya que todas pasan por el index.php que inicia sesión.
     */
+    session_start();
+    
 
-    // enrutamiento
+    // Array de mapeo donde se contemplan todas las posibles acciones
     $map = array(
-        /*
-        En cada elemento podemos añadir una posición mas que se encargará de otorgar el nivel mínimo para ejecutar la acción
-        Puede quedar de la siguiente manera
-        'inicio' => array('controller' =>'Controller', 'action' =>'inicio', 'nivel_usuario'=>0)
-        */
         'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
         'listar' => array('controller' =>'Controller', 'action' =>'listar'),
         'insertarAlumno' => array('controller' =>'Controller', 'action' =>'insertarAlumno'),
@@ -34,29 +30,30 @@
         'registroCorrecto' => array('controller' =>'Controller', 'action' =>'registroCorrecto'),
         'errorPermisos' => array('controller' =>'Controller', 'action' =>'errorPermisos'),
     );
-    // Parseo de la ruta
+
+    /*
+        Capturamos la acción con el método $_GET y si no existe mostramos una página de error simple indicando que la acción no existe.
+    */
     if (isset($_GET['ctl'])) {
         if (isset($map[$_GET['ctl']])) {
             $ruta = $_GET['ctl'];
         } else {
-
-            //Si el valor puesto en ctl en la URL no existe en el array de mapeo envía una cabecera de error
             header('Status: 404 Not Found');
             echo '<html><body><h1>Error 404: No existe la ruta <i>' .
-                $_GET['ctl'] .'</p></body></html>';
-                exit;
-                /*
-                * También podríamos poner $ruta=error; y mostraríamos una pantalla de error
-                */
+            $_GET['ctl'] .'</p></body></html>';
+            exit;
         }
     } else {
         $ruta = 'inicio';
     }
     $controlador = $map[$ruta];
+    
     /* 
-    Comprobamos si el metodo correspondiente a la acción relacionada con el valor de ctl existe, si es así ejecutamos el método correspondiente.
-    En aso de no existir cabecera de error.
-    En caso de estar utilizando sesiones y permisos en las diferentes acciones comprobariaos tambien si el usuario tiene permiso suficiente para ejecutar esa acción
+        Comprobamos si el metodo correspondiente a la acción relacionada con el valor de ctl existe, si es así ejecutamos el método correspondiente.
+        
+        En aso de no existir cabecera de error.
+    
+        En caso de estar utilizando sesiones y permisos en las diferentes acciones comprobariaos tambien si el usuario tiene permiso suficiente para ejecutar esa acción
     */
 
     if (method_exists($controlador['controller'],$controlador['action'])) {

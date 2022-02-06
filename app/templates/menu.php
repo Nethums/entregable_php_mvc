@@ -1,3 +1,6 @@
+<!--
+    · Menú para usuarios de nivel 0, es decir, usuarios que no han iniciado sesión.
+-->
 
 <div id="nav-menu">
     <ul class="menu navegacion">

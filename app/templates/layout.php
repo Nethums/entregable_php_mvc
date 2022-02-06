@@ -1,3 +1,9 @@
+	<!--
+        · Esta página es la que monta realmente la página que muestra al usuario final.
+		· Dependiendo del nivel del usuario se mostrará un menú u otro.
+		· En las diferentes vistas hemos cargado en la variable $contenido todo lo que queríamos mostrar. Aquí se devuelve y muestra al usuario.
+    -->
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
@@ -21,18 +27,7 @@
 			
 			if (!isset($menu))
 				$menu='menu.php' ;
-			include $menu;
-			/*
-				echo "SESION";
-				echo "<pre>";
-				print_r($_SESSION);
-				echo "</pre>"; 
-
-				echo "REQUEST";
-				echo "<pre>";
-				print_r($_REQUEST);
-				echo "</pre>";
-			*/			
+			include $menu;		
 		?>
 		
 

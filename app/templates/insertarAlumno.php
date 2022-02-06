@@ -1,4 +1,14 @@
 <?php ob_start() ?>
+
+<!--
+    · Contenido de la página /templates/insetarAlumno.php
+    · Lo guardamos en el buffer y se carga en la variable $contenido para mostrarla en /templates/layout.
+    · Formulario completo para insetar un alumno nuevo.
+    · La información del alumno va en 2 tablas: alumnos y asignaturas.
+    · Al final del formulario comprobamos si la variable de sesión $_SESSION['errores'] existe y de existir es porque han habido errores que mostramos por pantalla.
+    · Después de mostrar los errores eliminamos los datos la variable.
+-->
+
 <div class="intro">
     <h2>Formulario para insertar nuevo alumno</h2>
     <p>Todos los campos son obligatorios.</p>

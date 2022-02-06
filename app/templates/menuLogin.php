@@ -1,3 +1,7 @@
+
+<!--
+    · Menú para usuarios de nivel 1, es decir, usuarios que están registrados y han iniciado sesión.
+-->
 <div id="nav-menu">
     <ul class="menu navegacion">
         <li><a href="index.php?ctl=inicio">Inicio</a></li>

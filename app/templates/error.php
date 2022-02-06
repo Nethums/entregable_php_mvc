@@ -1,17 +1,14 @@
-<?php ob_start();
-if (isset($params['mensaje'])) {
-    ?>
-<b><span style="color: red;">
-<?php
+<?php ob_start()?>
 
-    echo $params['mensaje'];
-    echo "</span></b>";
-}
-?>
+<!--
+    Contenido de la página de error genérica. 
+    Lo guardamos en el buffer y se carga en la variable $contenido para mostrarla en /templates/layout
+-->
 
-<div class="row">
-
-			<h3>Ha habido un error</h3>
+<div class="intro">
+    <h2>Error</h2>
+    <p>Parece que ha habido un error. Por favor inténtalo de nuevo.</p>
+</div>
 
 
 <?php $contenido = ob_get_clean() ?>

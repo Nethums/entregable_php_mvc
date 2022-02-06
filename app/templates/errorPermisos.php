@@ -6,6 +6,7 @@
     <!-- 
         Como hay varios tipos de errores debido a los permisos, ejecutamos un switch para coger el valor por el método GET y sacar un mensaje según corresponda
     -->
+    
     <?php
         $motivo = $_GET['problema'];
         switch ($motivo) {

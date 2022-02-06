@@ -1,7 +1,14 @@
 <?php
 
+//Clase que es hija de la clase Modelo de quién hereda el método conexión
+
 class Usuarios extends Modelo {
 
+    /*
+        · Este método nos sirve para comprobar si los valores que ha introducido el usuario en el formulario de login de /templates/iniciarSesion.php son correctos.
+        · Si son correctos lo comprobamos con rowCount. Si hay 1 fila es que existe y guardamos los datos en un array.
+        · Si la combinación de user + password no existe devolvemos FALSE.
+    */
     function loginUsuario($usuario, $password) {
         
         $consulta = "select * from usuarios where user=:usuario and pass=:clave"; 
@@ -20,6 +27,11 @@ class Usuarios extends Modelo {
         }
     }
 
+    /*
+        · Este método nos sirve para que un usuario se registre en la base de datos.
+        · Le pasamos por parámetros los valores recogidos desde el formulario en /templates/registrarse.php
+        · Llegamos aquí desde la acción registro() en el controlador.
+    */
     public function registrarUsuario($user, $pass, $email, $fPerfil) {
 
         $fPerfilRuta = $user . "\\" . $fPerfil;

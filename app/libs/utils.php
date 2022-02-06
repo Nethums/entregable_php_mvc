@@ -1,5 +1,9 @@
 <?php
-    //Aqui pondremos las funciones de validación de los campos
+    /*
+        · Esta función se encarga de validar los datos recogidos en el formulario de /templates/insetarAlumno.php
+        · Dentro de esta función hacemos llamadas a otras funciones.
+        · Si todos los campos se han validado correctamente: error = FALSE
+    */
 
     function validarDatos($nombre, $nia, $email, $direccion, $cPostal, $localidad, $fNacimiento, $fPerfil) {
         $error = FALSE;
@@ -43,6 +47,12 @@
             return TRUE;
         }        
     }
+
+    /*
+        · Esta función se encarga de validar los datos recogidos en el formulario de /templates/registrarse.php
+        · Dentro de esta función hacemos llamadas a otras funciones.
+        · Si todos los campos se han validado correctamente: error = FALSE
+    */
 
     function validarDatosRegistro($user, $pass, $email, $fPerfil) {
         $error = FALSE;
@@ -114,6 +124,10 @@
         return $texto;
     }
 
+    /*
+        · Función que cambia un caracter por otro dentro de un string.
+        · Lo uso para sustituir los espacios entre palabras por _ ya que las fotografías no pueden tener espacios por medio.
+    */
     function reemplazarEnFiles (string $campo, string $atributo, string $aparicionEnString, string $reemplazo) {
         $cadenaOriginal = $_FILES[$campo][$atributo];  
         //Cambiar $aparicionEnString por $reemplazo
@@ -203,6 +217,9 @@
        }
     }
   
+    /*
+        ·Esta función sube la imagen del alumno a la carpeta /img/alumnos/NIAdelALUMNO.
+    */
     function cSubirImagenPerfilAlumno(string $campo, string $alumno, string $nia) {
 
         $extensionesValidas = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
@@ -248,6 +265,9 @@
         }
     }    
 
+    /*
+        ·Esta función sube la imagen del usuario a la carpeta /img/usuarios/nombreUser
+    */
     function cSubirImagenPerfilUsuario(string $user, string $campo) {
 
         $extensionesValidas = ["image/jpeg", "image/jpg", "image/png", "image/gif"];

@@ -146,7 +146,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `user`, `pass`, `nivel`, `email`, `fPerfil`) VALUES
 (0, 'miguel', 'miguel', 1, 'magallart58@gmail.com', 'miguel/miguel.jpg'),
-(1, 'admin', 'admin', 2, 'admin@server.com', 'admin/admin.jpg');
+(1, 'admin', 'admin', 1, 'admin@server.com', 'admin/admin.jpg');
 
 --
 -- Índices para tablas volcadas

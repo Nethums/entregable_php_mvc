@@ -46,14 +46,14 @@ CREATE TABLE `alumnos` (
 --
 
 INSERT INTO `alumnos` (`id`, `nombre`, `nia`, `email`, `direccion`, `cPostal`, `localidad`, `fNacimiento`, `fPerfil`) VALUES
-(0, 'Nuria Ramírez Pons', 85429874, 'nuria@gmail.com', 'Montesa 28-3', 46020, 'Valencia', '1999-05-28', '85429874/nuria_ramirez_pons.jpg'),
-(1, 'José Álvarez Pelayo', 47896521, 'jose@gmail.com', 'Príncipe Velasco 28-3', 46120, 'Valencia', '1993-03-14', '47896521/jose_alvarez_pelayo.jpg'),
-(2, 'Alfonso Ruiz Mendez', 59863214, 'alfonso@gmail.com', 'Bolivia 12-1', 46018, 'Valencia', '1991-03-12', '59863214/alfonso_ruiz_mendez.jpg'),
-(3, 'Marta Fonseca Yuste', 56211486, 'marta@gmail.com', 'Picapedreros 89-19', 46019, 'Valencia', '1999-05-14', '56211486/marta_fonseca_yuste.jpg'),
-(4, 'Liliana Vergara Alarcon', 23567458, 'liliana@gmail.com', 'Misionero Vicente Caña 1-25', 46950, 'Valencia', '2008-08-29', '23567458/liliana_vergara_alarcon.jpg'),
-(5, 'Adam Montoro Torre', 33698455, 'adam@gmail.com', 'Mestre Palau 90-3', 46930, 'Valencia', '2003-12-02', '33698455/adam_montoro_torre.jpg'),
-(6, 'Eulalia Vilchez Saenz', 96657112, 'eulalia@gmail.com', 'Mayor 11-3', 46920, 'Valencia', '2000-04-17', '96657112/eulalia_vilchez_saenz.jpg'),
-(7, 'Fernando Benavides Carrera', 85547133, 'fernando@gmail.com', 'Doctor Enrique López 7-8', 46018, 'Valencia', '1985-01-25', '85547133/fernando_benavides_carrera.jpg');
+(0, 'Nuria Ramírez Pons', 85429874, 'nuria@gmail.com', 'Montesa 28-3', 46020, 'Valencia', '1999-05-28', '/85429874/nuria_ramirez_pons.jpg'),
+(1, 'José Álvarez Pelayo', 47896521, 'jose@gmail.com', 'Príncipe Velasco 28-3', 46120, 'Valencia', '1993-03-14', '/47896521/jose_alvarez_pelayo.jpg'),
+(2, 'Alfonso Ruiz Mendez', 59863214, 'alfonso@gmail.com', 'Bolivia 12-1', 46018, 'Valencia', '1991-03-12', '/59863214/alfonso_ruiz_mendez.jpg'),
+(3, 'Marta Fonseca Yuste', 56211486, 'marta@gmail.com', 'Picapedreros 89-19', 46019, 'Valencia', '1999-05-14', '/56211486/marta_fonseca_yuste.jpg'),
+(4, 'Liliana Vergara Alarcon', 23567458, 'liliana@gmail.com', 'Misionero Vicente Caña 1-25', 46950, 'Valencia', '2008-08-29', '/23567458/liliana_vergara_alarcon.jpg'),
+(5, 'Adam Montoro Torre', 33698455, 'adam@gmail.com', 'Mestre Palau 90-3', 46930, 'Valencia', '2003-12-02', '/33698455/adam_montoro_torre.jpg'),
+(6, 'Eulalia Vilchez Saenz', 96657112, 'eulalia@gmail.com', 'Mayor 11-3', 46920, 'Valencia', '2000-04-17', '/96657112/eulalia_vilchez_saenz.jpg'),
+(7, 'Fernando Benavides Carrera', 85547133, 'fernando@gmail.com', 'Doctor Enrique López 7-8', 46018, 'Valencia', '1985-01-25', '/85547133/fernando_benavides_carrera.jpg');
 
 -- --------------------------------------------------------
 

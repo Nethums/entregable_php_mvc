@@ -142,7 +142,7 @@ class Alumnos extends Modelo {
             $result3->execute();
         } 
 
-        if (in_array("dws", $arrayAsignaturas)) {
+        if (in_array("eie", $arrayAsignaturas)) {
             $asignaturaEIE = "4";
 
             $consulta4 = "insert into clases (idAlumno, idAsignatura) values (?, ?)";

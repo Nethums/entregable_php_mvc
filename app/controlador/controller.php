@@ -159,7 +159,6 @@
                             $asig = new Alumnos();
                             if ($asig->insertarAsignaturas($ultimaIdAlumno, $asiUser)) {
                                 
-                                header('Location: pruebas.php?funciona=si');
                             } else {                            
                                 $params['mensaje'] = 'No se han podido insertar las asignaturas en la base de datos.';
                             }

@@ -281,7 +281,7 @@
             · Si todo va correcto, redirigimos al usuario a la página /templates/registroCorrecto.php desde la acción en el index.php.
         */
         public function registrarse() {
-            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 0) {
+            if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 0 || !isset($_SESSION['nivel'])) {
                 try {
                     if (isset($_POST['registrar'])) {
                         $user = recoge('user');
@@ -308,14 +308,16 @@
                     }
                 } catch (Exception $e) {
                     error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logExceptio.txt");
-                    //header('Location: index.php?ctl=error');
+                    header('Location: index.php?ctl=error');
                 } catch (Error $e) {
                     error_log($e->getMessage() . microtime() . PHP_EOL, 3, "logError.txt");
-                    //header('Location: index.php?ctl=error');
+                    header('Location: index.php?ctl=error');
                 }
             } else {
-                header('Location: index.php?ctl=errorPermisos&problema=registrado');
-            } 
+                header('Location: index.php?ctl=errorPermisos&problema=areaR');
+            }   
+
+            
             
 
             if (isset($_SESSION['nivel']) && $_SESSION['nivel'] == 1) {
